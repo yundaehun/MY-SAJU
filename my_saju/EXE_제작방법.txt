@@ -1,0 +1,17 @@
+MY SAJU 독립 실행형 EXE 제작 키트
+
+[제작 PC에서 필요한 것]
+- Windows 10/11 64비트
+- Python 3.10 이상
+- 인터넷 연결(최초 빌드 시 라이브러리 다운로드)
+
+[EXE 만드는 법]
+1. Python 설치 시 Add Python to PATH를 체크합니다.
+2. 이 폴더 안의 build_exe.bat을 더블클릭합니다.
+3. 완료되면 배포용 폴더에 MY_SAJU.exe가 생성됩니다.
+
+[친구에게 공유]
+배포용 폴더의 MY_SAJU.exe와 사용방법.txt를 전달하면 됩니다.
+받는 사람은 Python을 설치할 필요가 없습니다.
+
+주의: EXE는 Windows에서 빌드해야 합니다. 이 제작 키트 자체가 EXE 실행 성공을 보증하는 것은 아니며, 빌드 후 Python이 없는 별도 Windows PC에서 최종 테스트가 필요합니다.

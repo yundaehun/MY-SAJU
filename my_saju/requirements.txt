@@ -1,0 +1,2 @@
+Flask>=3.0,<4
+lunar-python>=1.4.0
