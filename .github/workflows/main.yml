@@ -21,12 +21,25 @@ jobs:
           python-version: '3.11'
 
       - name: 필요한 프로그램 설치
+        working-directory: my_saju
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pyinstaller
 
+      - name: 템플릿 폴더 준비
+        working-directory: my_saju
+        shell: pwsh
+        run: |
+          if (Test-Path "템플릿") {
+            Copy-Item "템플릿" "templates" -Recurse -Force
+          }
+          if (!(Test-Path "templates/index.html")) {
+            throw "템플릿/index.html 파일을 찾을 수 없습니다."
+          }
+
       - name: Windows 실행 파일 만들기
+        working-directory: my_saju
         shell: pwsh
         run: |
           $args = @(
@@ -34,15 +47,19 @@ jobs:
             "--clean",
             "--onedir",
             "--name", "MY_SAJU",
+            "--collect-all", "flask",
             "--add-data", "templates;templates"
           )
           if (Test-Path "static") {
             $args += @("--add-data", "static;static")
           }
           & pyinstaller @args app.py
+          if ($LASTEXITCODE -ne 0) {
+            throw "EXE 제작 실패"
+          }
 
       - name: 완성 파일 저장
         uses: actions/upload-artifact@v4
         with:
           name: MY-SAJU-Windows
-          path: dist/MY_SAJU/
+          path: my_saju/dist/MY_SAJU/
